@@ -1,5 +1,6 @@
 import mysql from "mysql2";
 import { Router } from "express";
+import proxyClasses from "../middleware/proxyClasses.js";
 
 const classesHub = Router();
 let connection;
@@ -38,7 +39,7 @@ classesHub.get("/:id", (req, res) => {
   );
 });
 
-classesHub.post("/", (req, res) => {
+classesHub.post("/", proxyClasses, (req, res) => {
   const { id, name, teacher_id } = req.body;
 
   connection.query(
@@ -54,7 +55,7 @@ classesHub.post("/", (req, res) => {
     });
 });
 
-classesHub.put("/:id", (req, res) => {
+classesHub.put("/:id", proxyClasses, (req, res) => {
   const classId = req.params.id;
   const {name, teacher_id} = req.body;
 
