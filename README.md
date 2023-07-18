@@ -92,6 +92,5 @@ The project uses the following dependencies:
 
 Vicky Vanessa Montañez Molina ---
 
-<img src="https://raw.githubusercontent.com/VickyMontanezCampus/Onpoint/master/img/gmail.png" style="zoom: 5%;" />    vmontanez707@gmail.com
-
- <img src="https://raw.githubusercontent.com/VickyMontanezCampus/Onpoint/master/img/github-logo.png" style="zoom: 5%;" />   https://github.com/VickyMontanezCampus
+- vmontanez707@gmail.com
+- https://github.com/VickyMontanezCampus
