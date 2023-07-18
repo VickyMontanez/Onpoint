@@ -1,5 +1,6 @@
 import mysql from "mysql2";
 import { Router } from "express";
+import proxyBonusPoints from "../middleware/proxyBonusPoints.js";
 
 const bonuspointsHub = Router();
 let connection;
@@ -38,7 +39,7 @@ bonuspointsHub.get("/:id", (req, res) => {
   );
 });
 
-bonuspointsHub.post("/", (req, res) => {
+bonuspointsHub.post("/", proxyBonusPoints, (req, res) => {
   const { id, amount, comments, student_id, created_by, updated_by } = req.body;
 
   connection.query(
@@ -54,7 +55,7 @@ bonuspointsHub.post("/", (req, res) => {
     });
 });
 
-bonuspointsHub.put("/:id", (req, res) => {
+bonuspointsHub.put("/:id", proxyBonusPoints, (req, res) => {
   const bpId = req.params.id;
   const {amount, comments, student_id, created_by, updated_by } = req.body;
 
