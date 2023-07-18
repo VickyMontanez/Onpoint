@@ -1,6 +1,12 @@
-import { Expose, Type, Transform } from 'class-transformer';
-import { IsDefined, MaxLength, MinLength, IsEmail, IsString, IsInt, Matches, IsOptional} from "class-validator";
+import { Expose, Type} from 'class-transformer';
+import { IsDefined, MaxLength, IsEnum, IsEmail, IsString, IsInt, Matches} from "class-validator";
 
+enum Gender {
+    Male = 'Male',
+    Female = 'Female',
+    Other = 'Other',
+}
+  
 export class teachers {
 
     @Expose({ name: 'id' })
@@ -38,8 +44,13 @@ export class teachers {
     @Type(()=>Number)
     teacher_age: number;
 
+    @Expose({ name: 'gender' })
+    @IsEnum(Gender, { message: ()=>{throw {status:401, message:'¡ERROR! The "Gender" parameter does not comply with the established data type >:('}}})
+    @Type(()=>String)
+    teacher_gender: string;
+
     @Expose({ name: 'email' })
-    @IsEmail({}, { message: ()=>{throw {status:401, message:'¡ERROR! The "Age" parameter does not comply with the established data type >:('}}})
+    @IsEmail({}, { message: ()=>{throw {status:401, message:'¡ERROR! The "Email" parameter does not comply with the established data type >:('}}})
     @Type(()=>String)
     teacher_email: string;
 
@@ -47,7 +58,7 @@ export class teachers {
     @IsDefined({message: ()=>{throw {status:401, message:'¡ERROR! The "Address" parameter is required >:('}}})
     @IsString({message: ()=>{throw {status:401, message: '¡ERROR! The "Address" parameter does not comply with the established data type >:('}}})
     @MaxLength(250,{message: ()=>{throw {status:401, message:'¡ERROR! The "Address" parameter has exceeded the limit of characters >:('}}})
-    @Matches(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/, {message: ()=>{throw{status:401, message:'¡ERROR! The "Address" parameter contains invalid characters >:('}}})
+    @Matches(/^[A-Za-z0-9\s#\-.,]+$/, {message: ()=>{throw{status:401, message:'¡ERROR! The "Address" parameter contains invalid characters >:('}}})
     @Type(()=>String)
     teacher_address : string;
 
@@ -57,6 +68,8 @@ export class teachers {
         teacher_specialty: string,
         teacher_phone: string,
         teacher_age: number,
+        teacher_gender: string,
+        teacher_email: string,
         teacher_address : string
     ) {
         this.teacher_id = teacher_id;
@@ -64,6 +77,8 @@ export class teachers {
         this.teacher_specialty = teacher_specialty;
         this.teacher_phone = teacher_phone;
         this.teacher_age = teacher_age;
+        this.teacher_gender = teacher_gender;
+        this.teacher_email = teacher_email;
         this.teacher_address = teacher_address;
     }
 

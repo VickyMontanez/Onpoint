@@ -1,5 +1,6 @@
 import mysql from "mysql2";
 import { Router } from "express";
+import proxyTeachers from "../middleware/proxyTeachers.js";
 
 const teachersHub = Router();
 let connection;
@@ -38,7 +39,7 @@ teachersHub.get("/:id", (req, res) => {
   );
 });
 
-teachersHub.post("/", (req, res) => {
+teachersHub.post("/", proxyTeachers, (req, res) => {
   const { id, name, specialty, phone, age, gender, email, address } = req.body;
 
   connection.query(

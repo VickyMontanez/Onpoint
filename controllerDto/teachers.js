@@ -8,14 +8,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose, Type } from 'class-transformer';
-import { IsDefined, MaxLength, IsEmail, IsString, IsInt, Matches } from "class-validator";
+import { IsDefined, MaxLength, IsEnum, IsEmail, IsString, IsInt, Matches } from "class-validator";
+var Gender;
+(function (Gender) {
+    Gender["Male"] = "Male";
+    Gender["Female"] = "Female";
+    Gender["Other"] = "Other";
+})(Gender || (Gender = {}));
 export class teachers {
-    constructor(teacher_id, teacher_name, teacher_specialty, teacher_phone, teacher_age, teacher_address) {
+    constructor(teacher_id, teacher_name, teacher_specialty, teacher_phone, teacher_age, teacher_gender, teacher_email, teacher_address) {
         this.teacher_id = teacher_id;
         this.teacher_name = teacher_name;
         this.teacher_specialty = teacher_specialty;
         this.teacher_phone = teacher_phone;
         this.teacher_age = teacher_age;
+        this.teacher_gender = teacher_gender;
+        this.teacher_email = teacher_email;
         this.teacher_address = teacher_address;
     }
 }
@@ -60,8 +68,14 @@ __decorate([
     __metadata("design:type", Number)
 ], teachers.prototype, "teacher_age", void 0);
 __decorate([
+    Expose({ name: 'gender' }),
+    IsEnum(Gender, { message: () => { throw { status: 401, message: '¡ERROR! The "Gender" parameter does not comply with the established data type >:(' }; } }),
+    Type(() => String),
+    __metadata("design:type", String)
+], teachers.prototype, "teacher_gender", void 0);
+__decorate([
     Expose({ name: 'email' }),
-    IsEmail({}, { message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:(' }; } }),
+    IsEmail({}, { message: () => { throw { status: 401, message: '¡ERROR! The "Email" parameter does not comply with the established data type >:(' }; } }),
     Type(() => String),
     __metadata("design:type", String)
 ], teachers.prototype, "teacher_email", void 0);
@@ -70,7 +84,7 @@ __decorate([
     IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Address" parameter is required >:(' }; } }),
     IsString({ message: () => { throw { status: 401, message: '¡ERROR! The "Address" parameter does not comply with the established data type >:(' }; } }),
     MaxLength(250, { message: () => { throw { status: 401, message: '¡ERROR! The "Address" parameter has exceeded the limit of characters >:(' }; } }),
-    Matches(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/, { message: () => { throw { status: 401, message: '¡ERROR! The "Address" parameter contains invalid characters >:(' }; } }),
+    Matches(/^[A-Za-z0-9\s#\-.,]+$/, { message: () => { throw { status: 401, message: '¡ERROR! The "Address" parameter contains invalid characters >:(' }; } }),
     Type(() => String),
     __metadata("design:type", String)
 ], teachers.prototype, "teacher_address", void 0);
