@@ -56,7 +56,7 @@ teachersHub.post("/", proxyTeachers, (req, res) => {
 });
 
 /* { "id": , "name": , "specialty": , "phone": , "age": , "gender": , "email": , "address":  } */
-teachersHub.put("/:id", (req, res) => {
+teachersHub.put("/:id", proxyTeachers, (req, res) => {
   const teacherId = req.params.id;
   const { name, specialty, phone, age, gender, email, address} = req.body;
 
