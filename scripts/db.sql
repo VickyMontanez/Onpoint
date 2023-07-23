@@ -257,4 +257,67 @@ INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type
 (1, 9, 8, 9, 'Demostró creatividad en un proyecto de arte.'),
 (2, 10, 9, 10, 'Realizó sus tareas con esmero y dedicación.');
 
+/* --------------------------------------------DATABASE QUERIES-------------------------------------------------- */
 
+/* -----------------Show Each Teacher With Their Students---------- */
+SELECT t.teacher_id, t.teacher_user_id, u_teacher.user_name AS teacher_name,
+s.student_id, s.student_user_id, u_student.user_name AS student_name
+FROM teachers t
+LEFT JOIN user_class uc_teacher ON t.teacher_user_id = uc_teacher.user_id
+LEFT JOIN user_class uc_student ON uc_teacher.class_id = uc_student.class_id
+LEFT JOIN students s ON uc_student.user_id = s.student_user_id
+LEFT JOIN users u_teacher ON t.teacher_user_id = u_teacher.user_id
+LEFT JOIN users u_student ON s.student_user_id = u_student.user_id;
+
+/* -------------------Show A Teacher's Students------------------------- */
+SELECT t.teacher_id, t.teacher_user_id, u_teacher.user_name AS teacher_name,
+s.student_id, s.student_user_id, u_student.user_name AS student_name
+FROM teachers t
+JOIN user_class uc_teacher ON t.teacher_user_id = uc_teacher.user_id
+JOIN user_class uc_student ON uc_teacher.class_id = uc_student.class_id
+JOIN students s ON uc_student.user_id = s.student_user_id
+JOIN users u_teacher ON t.teacher_user_id = u_teacher.user_id
+JOIN users u_student ON s.student_user_id = u_student.user_id
+WHERE t.teacher_id = 1;
+
+/* ----------------------Show All Students---------------- */
+SELECT s.student_id, u.user_name AS student_name
+FROM students s
+JOIN users u ON s.student_user_id = u.user_id;
+
+/* ----------------------Show All Teachers---------------- */
+SELECT t.teacher_id, u.user_name AS teacher_name
+FROM teachers t
+JOIN users u ON t.teacher_user_id = u.user_id;
+
+/* -----------------Show The Personal Data Of Each Student-------------------- */
+SELECT u.user_name, u.user_gender, u.user_age, u.user_address,
+c.em_address AS contact_email, p.ph_num AS phone_number
+FROM users u
+LEFT JOIN contact_email c ON u.user_id = c.em_user_id
+LEFT JOIN phone_numbers p ON u.user_id = p.ph_user
+WHERE u.user_id IN (SELECT student_user_id FROM students);
+
+/* -----------------Show The Personal Data Of Each Teacher-------------------- */
+SELECT u.user_name, u.user_gender, u.user_age, u.user_address,
+c.em_address AS contact_email, p.ph_num AS phone_number
+FROM users u
+LEFT JOIN contact_email c ON u.user_id = c.em_user_id
+LEFT JOIN phone_numbers p ON u.user_id = p.ph_user
+WHERE u.user_id IN (SELECT teacher_user_id FROM teachers);
+
+/* -----------------------Show Administrators----------------- */
+SELECT u.user_name AS administrator_name
+FROM users u
+JOIN roll r ON u.user_roll_id = r.roll_id
+WHERE r.roll_name = 'Administrator';
+
+/* ------------------Show The Accumulated Points Of Each Student----------------------- */
+SELECT s.student_id, u.user_name AS student_name, 
+SUM(et.ext_type_value) AS total_extra_points, 
+GROUP_CONCAT(ep.ext_comments SEPARATOR '; ') AS comments
+FROM students s
+JOIN users u ON s.student_user_id = u.user_id
+LEFT JOIN extra_points ep ON s.student_id = ep.ext_student_id
+LEFT JOIN extra_points_type et ON ep.ext_type_id = et.ext_type_id
+GROUP BY s.student_id, u.user_name;
