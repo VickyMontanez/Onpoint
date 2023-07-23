@@ -113,319 +113,148 @@ CREATE TABLE extra_points_type(
     ext_type_value INTEGER NOT NULL
 );
 
-INSERT INTO
-    students (
-        student_id,
-        student_name,
-        student_class_id,
-        student_age,
-        student_gender,
-        student_phone,
-        student_email,
-        student_address
-    )
-VALUES (
-        1,
-        'John Smith',
-        1,
-        18,
-        'Male',
-        '1234567890',
-        'john.smith@example.com',
-        '123 Main St'
-    ), (
-        2,
-        'Emma Johnson',
-        1,
-        17,
-        'Female',
-        '9876543210',
-        'emma.johnson@example.com',
-        '456 Elm St'
-    ), (
-        3,
-        'Michael Davis',
-        2,
-        19,
-        'Male',
-        '5555555555',
-        'michael.davis@example.com',
-        '789 Oak St'
-    ), (
-        4,
-        'Sophia Anderson',
-        2,
-        16,
-        'Female',
-        '4444444444',
-        'sophia.anderson@example.com',
-        '567 Pine St'
-    ), (
-        5,
-        'David Wilson',
-        3,
-        17,
-        'Male',
-        '1111111111',
-        'david.wilson@example.com',
-        '789 Maple Ave'
-    ), (
-        6,
-        'Olivia Thompson',
-        3,
-        18,
-        'Female',
-        '2222222222',
-        'olivia.thompson@example.com',
-        '345 Cedar Ave'
-    ), (
-        7,
-        'James Taylor',
-        4,
-        16,
-        'Male',
-        '7777777777',
-        'james.taylor@example.com',
-        '901 Oak Ave'
-    ), (
-        8,
-        'Ava Thomas',
-        4,
-        17,
-        'Female',
-        '6666666666',
-        'ava.thomas@example.com',
-        '678 Elm Ave'
-    ), (
-        9,
-        'Daniel Martinez',
-        5,
-        18,
-        'Male',
-        '3333333333',
-        'daniel.martinez@example.com',
-        '234 Pine Ave'
-    ), (
-        10,
-        'Mia Hernandez',
-        5,
-        16,
-        'Female',
-        '8888888888',
-        'mia.hernandez@example.com',
-        '567 Maple Blvd'
-    );
+/* ------------------------------------INSERT DATA-----------------------------------------------------------*/
+INSERT INTO gender(gen_name, gen_abreviation) VALUES
+('Male', 'M'),
+('Female', 'F'),
+('Non-Binary', 'NB'),
+('Other', 'O');
 
-INSERT INTO
-    teachers(
-        teacher_id,
-        teacher_name,
-        teacher_specialty,
-        teacher_phone,
-        teacher_age,
-        teacher_gender,
-        teacher_email,
-        teacher_address
-    )
-VALUES (
-        1,
-        'John Johnson',
-        'Mathematics',
-        '1234567890',
-        35,
-        'Male',
-        'john.johnson@example.com',
-        '123 Main St'
-    ), (
-        2,
-        'Emma Davis',
-        'Science',
-        '9876543210',
-        32,
-        'Female',
-        'emma.davis@example.com',
-        '456 Elm St'
-    ), (
-        3,
-        'Michael Smith',
-        'History',
-        '5555555555',
-        40,
-        'Male',
-        'michael.smith@example.com',
-        '789 Oak St'
-    ), (
-        4,
-        'Sophia Anderson',
-        'English',
-        '4444444444',
-        38,
-        'Female',
-        'sophia.anderson@example.com',
-        '567 Pine St'
-    ), (
-        5,
-        'David Wilson',
-        'Physical Education',
-        '1111111111',
-        37,
-        'Male',
-        'david.wilson@example.com',
-        '789 Maple Ave'
-    ), (
-        6,
-        'Olivia Thompson',
-        'Art',
-        '2222222222',
-        33,
-        'Female',
-        'olivia.thompson@example.com',
-        '345 Cedar Ave'
-    ), (
-        7,
-        'James Taylor',
-        'Music',
-        '7777777777',
-        36,
-        'Male',
-        'james.taylor@example.com',
-        '901 Oak Ave'
-    ), (
-        8,
-        'Ava Thomas',
-        'Computer Science',
-        '6666666666',
-        34,
-        'Female',
-        'ava.thomas@example.com',
-        '678 Elm Ave'
-    ), (
-        9,
-        'Daniel Martinez',
-        'Foreign Languages',
-        '3333333333',
-        39,
-        'Male',
-        'daniel.martinez@example.com',
-        '234 Pine Ave'
-    ), (
-        10,
-        'Mia Hernandez',
-        'Social Studies',
-        '8888888888',
-        31,
-        'Female',
-        'mia.hernandez@example.com',
-        '567 Maple Blvd'
-    );
+INSERT INTO classes (class_name) VALUES
+('Math 101'),
+('History 201'),
+('Science 301'),
+('Literature 101'),
+('Art 201'),
+('Music 101'),
+('Physics 201'),
+('Chemistry 301'),
+('Biology 101'),
+('Geography 201');
 
-INSERT INTO
-    classes (
-        class_id,
-        class_name,
-        class_teacher_id
-    )
-VALUES (1, 'Mathematics', 1), (2, 'Science', 2), (3, 'History', 3), (4, 'English', 4), (5, 'Physical Education', 5), (6, 'Art', 6), (7, 'Music', 7), (8, 'Computer Science', 8), (9, 'Foreign Languages', 9), (10, 'Social Studies', 10);
+INSERT INTO roll (roll_name) VALUES
+('Professor'),
+('Student'),
+('Administrator');
 
-INSERT INTO
-    bonus_points (
-        bp_id,
-        bp_amount,
-        bp_comments,
-        bp_student_id,
-        bp_created_by,
-        bp_created_at,
-        bp_updated_by,
-        bp_updated_at
-    )
-VALUES (
-        1,
-        5,
-        'Excellent work!',
-        1,
-        3,
-        '2023-07-01 09:15:00',
-        3,
-        '2023-07-01 09:15:00'
-    ), (
-        2,
-        10,
-        'Outstanding performance!',
-        2,
-        4,
-        '2023-07-02 14:30:00',
-        4,
-        '2023-07-02 14:30:00'
-    ), (
-        3,
-        3,
-        'Great improvement!',
-        3,
-        5,
-        '2023-07-03 10:45:00',
-        5,
-        '2023-07-03 10:45:00'
-    ), (
-        4,
-        8,
-        'Impressive effort!',
-        4,
-        6,
-        '2023-07-04 11:20:00',
-        6,
-        '2023-07-04 11:20:00'
-    ), (
-        5,
-        6,
-        'Well done!',
-        5,
-        7,
-        '2023-07-05 16:55:00',
-        7,
-        '2023-07-05 16:55:00'
-    ), (
-        6,
-        4,
-        'Keep up the good work!',
-        6,
-        8,
-        '2023-07-06 13:10:00',
-        8,
-        '2023-07-06 13:10:00'
-    ), (
-        7,
-        7,
-        'Impressive improvement!',
-        7,
-        9,
-        '2023-07-07 12:45:00',
-        9,
-        '2023-07-07 12:45:00'
-    ), (
-        8,
-        2,
-        'Nice effort!',
-        8,
-        10,
-        '2023-07-08 15:30:00',
-        10,
-        '2023-07-08 15:30:00'
-    ), (
-        9,
-        9,
-        'Well deserved!',
-        9,
-        1,
-        '2023-07-09 17:20:00',
-        1,
-        '2023-07-09 17:20:00'
-    ), (
-        10,
-        5,
-        'Great job!',
-        10,
-        2,
-        '2023-07-10 11:55:00',
-        2,
-        '2023-07-10 11:55:00'
-    );
+INSERT INTO speciality (sp_name) VALUES
+('Mathematics'),
+('History'),
+('Science'),
+('Literature'),
+('Art'),
+('Music'),
+('Physics'),
+('Chemistry'),
+('Biology'),
+('Geography');
+
+INSERT INTO users (user_name, user_gender, user_age, user_address, user_roll_id) VALUES
+('John Doe', 1, 30, '123 Main St', 1),
+('Jane Smith', 2, 28, '456 Oak Ave', 2),
+('Alex Johnson', 1, 25, '789 Elm Rd', 2),
+('Emily White', 2, 27, '1010 Cedar Ln', 3),
+('Eric Garcia', 1, 29, '111 Maple Dr', 3),
+('Maria Lopez', 2, 26, '222 Pine Blvd', 1),
+('David Brown', 1, 32, '333 Birch Rd', 2),
+('Lisa Wilson', 2, 31, '444 Oak St', 1),
+('Sarah Taylor', 2, 28, '555 Elm Ave', 3),
+('Chris Lee', 1, 30, '666 Cedar Ln', 2);
+
+INSERT INTO phone_numbers (ph_num, ph_type, ph_user) VALUES
+('+1 123-456-7890', 'Mobile', 1),
+('+44 987654321', 'Work', 2),
+('+61 333-444-555', 'Home', 3),
+('+1 555-555-5555', 'Mobile', 4),
+('+49 123-456-789', 'Work', 5),
+('+33 987654321', 'Home', 6),
+('+55 111-222-333', 'Mobile', 7),
+('+1 666-777-8888', 'Work', 8),
+('+61 444-555-666', 'Home', 9),
+('+49 444-555-666', 'Mobile', 10);
+
+INSERT INTO contact_email (em_address, em_type, em_user_id) VALUES
+('john.doe@example.com', 'Personal', 1),
+('jane.smith@example.com', 'Work', 2),
+('alex.smith@example.com', 'Personal', 3),
+('emily.white@example.com', 'Work', 4),
+('eric.johnson@example.com', 'Personal', 5),
+('maria.garcia@example.com', 'Work', 6),
+('david.brown@example.com', 'Personal', 7),
+('lisa.wilson@example.com', 'Work', 8),
+('sarah.taylor@example.com', 'Personal', 9),
+('chris.lee@example.com', 'Work', 10);
+
+INSERT INTO user_class (user_id, class_id) VALUES
+(1, 1),
+(2, 2),
+(3, 1),
+(4, 3),
+(1, 4),
+(2, 3),
+(3, 2),
+(4, 4),
+(1, 5),
+(2, 6);
+
+INSERT INTO user_speciality (user_id, sp_id) VALUES
+(1, 1),
+(2, 2),
+(3, 1),
+(4, 3),
+(1, 4),
+(2, 3),
+(3, 2),
+(4, 4),
+(1, 5),
+(2, 6);
+
+INSERT INTO teachers (teacher_user_id) VALUES
+(1),
+(6),
+(8),
+(10),
+(3),
+(7),
+(4),
+(9),
+(5),
+(2);
+
+INSERT INTO students (student_user_id) VALUES
+(2),
+(3),
+(4),
+(5),
+(7),
+(8),
+(9),
+(10),
+(1),
+(6);
+
+INSERT INTO extra_points_type (ext_type_name, ext_type_value) VALUES
+('Llegada Temprana', 5),
+('Participación en clase', 10),
+('Proyecto Extra', 20),
+('Excelente Desempeño', 15),
+('Colaboración en Grupo', 8),
+('Asistencia Perfecta', 10),
+('Mejora Continua', 12),
+('Trabajo Dedicado', 15),
+('Creatividad Destacada', 18),
+('Esmero en Tareas', 10);
+
+INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type_id, ext_comments) VALUES
+(1, 2, 1, 1, 'Llegó temprano a clase.'),
+(2, 3, 2, 2, 'Participó activamente en la discusión.'),
+(3, 1, 1, 3, 'Entregó un proyecto adicional.'),
+(4, 4, 3, 4, 'Obtuvo calificaciones sobresalientes en los exámenes.'),
+(1, 5, 4, 5, 'Trabajó en equipo y colaboró con sus compañeros.'),
+(2, 6, 5, 6, 'Asistió a todas las clases del mes.'),
+(3, 7, 6, 7, 'Ha mostrado un progreso significativo en su rendimiento.'),
+(4, 8, 7, 8, 'Siempre se muestra dedicado y comprometido con su aprendizaje.'),
+(1, 9, 8, 9, 'Demostró creatividad en un proyecto de arte.'),
+(2, 10, 9, 10, 'Realizó sus tareas con esmero y dedicación.');
+
+
