@@ -53,7 +53,7 @@ studentsHub.get("/:id", (req, res) => {
 });
 
 /* POST student's information to the database */
-studentsHub.post("/", (req, res) => {
+studentsHub.post("/", proxyStudents, (req, res) => {
   const { id, name, gender, age, address, phone, phone_type, email, email_type, class_id, roll_id } = req.body;
 
   // First, insert the student's personal information into the "users" table
@@ -123,7 +123,7 @@ studentsHub.post("/", (req, res) => {
 });
 
 /* UPDATE student's information */
-studentsHub.put("/:id", (req, res) => {
+studentsHub.put("/:id", proxyStudents, (req, res) => {
   const studentId = req.params.id;
   const { name, gender, age, address, phone, phone_type, email, email_type, roll_id, class_id } = req.body;
 
