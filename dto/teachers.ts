@@ -64,20 +64,20 @@ export class teachers {
     teacher_email_type: string;
 
     @Expose({ name: 'specialty_id' })
-    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Age" parameter is required >:('}}})
-    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:('}}})
+    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Specialty_Id" parameter is required >:('}}})
+    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Specialty_Id" parameter does not comply with the established data type >:('}}})
     @Type(()=>Number)
     teacher_specialty_id : number;
 
     @Expose({ name: 'class_id' })
-    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Age" parameter is required >:('}}})
-    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:('}}})
+    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Class_Id" parameter is required >:('}}})
+    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Class_Id" parameter does not comply with the established data type >:('}}})
     @Type(()=>Number)
     teacher_class_id : number;
 
     @Expose({ name: 'roll_id' })
-    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Age" parameter is required >:('}}})
-    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:('}}})
+    @IsDefined({message: ()=>{throw {status: 401, message: '¡ERROR! The "Roll_Id" parameter is required >:('}}})
+    @IsInt({message: ()=>{throw {status:401, message: '¡ERROR! The "Roll_Id" parameter does not comply with the established data type >:('}}})
     @Type(()=>Number)
     teacher_roll_id : number;
 

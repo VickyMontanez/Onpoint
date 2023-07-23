@@ -16,7 +16,7 @@ teachersHub.use((req, res, next) => {
 teachersHub.get("/", (req, res) => {
 
   // Teacher ID's are GET along with their usernames.
-  connection.query('SELECT t.teacher_id, u.user_name AS teacher_name FROM teachers t JOIN users u ON t.teacher_user_id = u.user_id', (err, result, fil) => {
+  connection.query('SELECT t.teacher_id, u.user_name AS teacher_name FROM teachers t JOIN users u ON t.teacher_user_id = u.user_id ORDER BY t.teacher_id ASC', (err, result, fil) => {
     res.end(JSON.stringify(result));
   })
 })
@@ -54,7 +54,7 @@ teachersHub.get("/:id", (req, res) => {
 });
 
 /* Teacher Information is POST to the DataBase */
-teachersHub.post("/", (req, res) => {
+teachersHub.post("/", proxyTeachers, (req, res) => {
 
   const { id, name, gender, age, address, phone, phone_type, email, email_type, specialty_id, class_id, roll_id } = req.body;
 
@@ -138,7 +138,7 @@ teachersHub.post("/", (req, res) => {
 });
 
 /* UPDATE the information of the teachers */
-teachersHub.put("/:id", (req, res) => {
+teachersHub.put("/:id", proxyTeachers, (req, res) => {
   const teacherId = req.params.id;
   const { name, gender, age, address, phone, phone_type, email, email_type, specialty_id, class_id, roll_id } = req.body;
 

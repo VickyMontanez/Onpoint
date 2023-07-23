@@ -96,22 +96,22 @@ __decorate([
 ], teachers.prototype, "teacher_email_type", void 0);
 __decorate([
     Expose({ name: 'specialty_id' }),
-    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter is required >:(' }; } }),
-    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:(' }; } }),
+    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Specialty_Id" parameter is required >:(' }; } }),
+    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Specialty_Id" parameter does not comply with the established data type >:(' }; } }),
     Type(() => Number),
     __metadata("design:type", Number)
 ], teachers.prototype, "teacher_specialty_id", void 0);
 __decorate([
     Expose({ name: 'class_id' }),
-    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter is required >:(' }; } }),
-    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:(' }; } }),
+    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Class_Id" parameter is required >:(' }; } }),
+    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Class_Id" parameter does not comply with the established data type >:(' }; } }),
     Type(() => Number),
     __metadata("design:type", Number)
 ], teachers.prototype, "teacher_class_id", void 0);
 __decorate([
     Expose({ name: 'roll_id' }),
-    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter is required >:(' }; } }),
-    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Age" parameter does not comply with the established data type >:(' }; } }),
+    IsDefined({ message: () => { throw { status: 401, message: '¡ERROR! The "Roll_Id" parameter is required >:(' }; } }),
+    IsInt({ message: () => { throw { status: 401, message: '¡ERROR! The "Roll_Id" parameter does not comply with the established data type >:(' }; } }),
     Type(() => Number),
     __metadata("design:type", Number)
 ], teachers.prototype, "teacher_roll_id", void 0);
