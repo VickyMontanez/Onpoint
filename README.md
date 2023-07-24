@@ -407,8 +407,6 @@ Here some examples of how to test different methods using ThunderClient with the
 
 The project has some bugs related to adding and subtracting extra points, specifically in the `POST` and `DELETE` functions. Additionally, the JSON Web Tokens (JWT) and cookies configurations need to be implemented.
 
-If you need help with debugging the code or setting up JWT and cookies, please don't hesitate to ask for assistance. I'd be happy to help you resolve the issues and guide you through the process of implementing JWT and cookies for secure authentication and authorization.
-
 
 
 #### Autor:sparkles:
