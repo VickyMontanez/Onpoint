@@ -66,7 +66,7 @@ extrapointsHub.get("/:studentId", (req, res) => {
 });
 
 /* POST student's extra points to the database */
-extrapointsHub.post("/:studentId/extra-points", (req, res) => {
+extrapointsHub.post("/:studentId/extra-points", proxyExtraPoints, (req, res) => {
   const studentId = req.params.studentId;
   const { teacherId, typeId, comments } = req.body;
 
@@ -155,7 +155,7 @@ extrapointsHub.post("/:studentId/extra-points", (req, res) => {
 });
 
 /* UPDATE the information of the extrapoints in the database */
-extrapointsHub.put("/:studentId/extra-points", (req, res) => {
+extrapointsHub.put("/:studentId/extra-points", proxyExtraPoints, (req, res) => {
   const studentId = req.params.studentId;
   const { teacherId, typeId, comments, points } = req.body;
 
