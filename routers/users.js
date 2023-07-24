@@ -1,5 +1,6 @@
 import mysql from "mysql2";
 import { Router } from "express";
+import proxyUsers from "../middleware/proxyUsers.js";
 
 const usersHub = Router();
 let connection;
@@ -46,7 +47,7 @@ usersHub.get("/:id", (req, res) => {
 });
 
 /* User Information is POST to the DataBase */
-usersHub.post("/", (req, res) => {
+usersHub.post("/", proxyUsers, (req, res) => {
 
   const { id, name, gender, age, address, phone, phone_type, email, email_type, roll_id } = req.body;
 
@@ -91,7 +92,7 @@ usersHub.post("/", (req, res) => {
 });
 
 /* UPDATE the information of the users */
-usersHub.put("/:id", (req, res) => {
+usersHub.put("/:id", proxyUsers, (req, res) => {
   const userId = req.params.userId;
   const { name, gender, age, address, phone, phone_type, email, email_type, roll_id } = req.body;
 
