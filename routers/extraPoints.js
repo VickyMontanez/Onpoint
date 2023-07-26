@@ -65,10 +65,17 @@ extrapointsHub.get("/:studentId", (req, res) => {
   );
 });
 
+/**
+  
+ * 
+ */
+
+
+
 /* POST student's extra points to the database */
-extrapointsHub.post("/:studentId/extra-points", proxyExtraPoints, (req, res) => {
+extrapointsHub.post("/:studentId/extrapoints", proxyExtraPoints, (req, res) => {
   const studentId = req.params.studentId;
-  const { teacherId, typeId, comments } = req.body;
+  const { idReg, teacherId, typeId, comments } = req.body;
 
   // First, check if the student exists in the database
   connection.query(
@@ -118,34 +125,50 @@ extrapointsHub.post("/:studentId/extra-points", proxyExtraPoints, (req, res) => 
               }
 
               // Teacher exists, now insert the extra points into the "extra_points" table
-              connection.query(
-                'INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type_id, ext_comments) VALUES (?, ?, ?, ?, ?)',
-                [teacherId, userId, classId, typeId, comments],
-                (err, result, fields) => {
-                  if (err) {
-                    console.error(err);
-                    return res.status(500).send("¡ERROR! Error Inserting Data Into the DataBase");
-                  } else {
-                    // Get the updated total_extra_points for the student
-                    connection.query(
-                      `SELECT IFNULL(SUM(ep_type.ext_type_value), 0) AS total_extra_points
-                      FROM extra_points ep
-                      JOIN extra_points_type ep_type ON ep.ext_type_id = ep_type.ext_type_id
-                      WHERE ep.ext_student_id = ?`,
-                      [studentId],
-                      (err, totalPointsResult, fields) => {
-                        if (err) {
-                          console.error(err);
-                          return res.status(500).send("¡ERROR! Error Fetching Data from the DataBase");
-                        } else {
-                          const totalExtraPoints = totalPointsResult[0].total_extra_points;
-                          res.json({ message: "Extra points added successfully :) (ExtraPoints)", total_extra_points: totalExtraPoints });
-                        }
+
+              connection.query(`
+                  SELECT *
+                  FROM extra_points as ex
+                  WHERE ex.ext_id = ?
+              `, [idReg], (err, indexs) => {
+                if (indexs.length < 1) {
+                  connection.query(
+                    'INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type_id, ext_comments, total_extra) VALUES (?, ?, ?, ?, ?, ?)',
+                    [teacherId, userId, classId, typeId, comments, 0],
+                    (err, result, fields) => {
+                      if (err) {
+                        console.error(err);
+                        return res.status(500).send("¡ERROR! Error Inserting Data Into the DataBase");
+                      } else {
+                        res.send("la data se inserto exitosamente")
                       }
-                    );
-                  }
+                    }
+                  );
+                } else {
+                  connection.query(`
+                      SELECT type.ext_type_value as i
+                      FROM extra_points_type as type
+                      LEFT JOIN extra_points as ext ON ext.ext_type_id = type.ext_type_id
+                      WHERE type.ext_type_id = ?;
+                      `, typeId, (err, total) => {
+                    if (err) res.send(err)
+                    else {
+                      connection.query(
+                        `UPDATE extra_points SET total_extra = total_extra + ? WHERE ext_id = ?`,
+                        [total[0].i, idReg],
+                        (err, fields) => {
+                          if (err) {
+                            console.error(err);
+                            return res.status(500).send("¡ERROR! Error Fetching Data from the DataBase");
+                          } else {
+                            res.json({ message: "Se actualizo el campo" });
+                          }
+                        }
+                      );
+                    }
+                  })
                 }
-              );
+              })
             }
           );
         }
@@ -153,6 +176,30 @@ extrapointsHub.post("/:studentId/extra-points", proxyExtraPoints, (req, res) => 
     }
   );
 });
+
+// Get the updated total_extra_points for the student
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* UPDATE the information of the extrapoints in the database */
 extrapointsHub.put("/:studentId/extra-points", proxyExtraPoints, (req, res) => {
