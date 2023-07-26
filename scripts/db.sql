@@ -1,21 +1,10 @@
--- Active: 1687910467964@@localhost@3306@onpoint
+-- Active: 1690396303605@@localhost@3306@onpoint
 
 CREATE DATABASE onpoint;
 
 SHOW DATABASES;
 
 USE onpoint;
-
-DROP DATABASE onpoint;
-
-CREATE TABLE
-    phone_numbers(
-        ph_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        ph_num VARCHAR(20) NOT NULL,
-        ph_type VARCHAR(50) NOT NULL,
-        ph_user INTEGER NOT NULL,
-        FOREIGN KEY (ph_user) REFERENCES users(user_id)
-    );
 
 CREATE TABLE
     gender(
@@ -25,13 +14,28 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    contact_email(
-        em_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        em_address VARCHAR(150) NOT NULL,
-        em_type VARCHAR(20) NOT NULL,
-        em_user_id INT NOT NULL,
-        FOREIGN KEY (em_user_id) REFERENCES users(user_id)
+    speciality(
+        sp_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        sp_name VARCHAR(100) NOT NULL
     );
+
+CREATE TABLE
+    classes(
+        class_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        class_name VARCHAR(100) NOT NULL
+    );
+
+CREATE TABLE
+    roll(
+        roll_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        roll_name VARCHAR(200) NOT NULL
+    );
+
+CREATE TABLE extra_points_type(
+    ext_type_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ext_type_name VARCHAR(100) NOT NULL,
+    ext_type_value INTEGER NOT NULL
+);
 
 CREATE TABLE
     users(
@@ -46,9 +50,21 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    speciality(
-        sp_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        sp_name VARCHAR(100) NOT NULL
+    contact_email(
+        em_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        em_address VARCHAR(150) NOT NULL,
+        em_type VARCHAR(20) NOT NULL,
+        em_user_id INT NOT NULL,
+        FOREIGN KEY (em_user_id) REFERENCES users(user_id)
+    );
+
+CREATE TABLE
+    phone_numbers(
+        ph_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        ph_num VARCHAR(20) NOT NULL,
+        ph_type VARCHAR(50) NOT NULL,
+        ph_user INTEGER NOT NULL,
+        FOREIGN KEY (ph_user) REFERENCES users(user_id)
     );
 
 CREATE TABLE
@@ -61,24 +77,12 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    classes(
-        class_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        class_name VARCHAR(100) NOT NULL
-    );
-    
-CREATE TABLE
     user_class(
         user_class_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
         user_id INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(user_id),
         class_id INTEGER NOT NULL,
         FOREIGN KEY (class_id) REFERENCES classes(class_id)
-    );
-
-CREATE TABLE
-    roll(
-        roll_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        roll_name VARCHAR(200) NOT NULL
     );
 
 CREATE TABLE teachers(
@@ -107,11 +111,7 @@ CREATE TABLE
         FOREIGN KEY (ext_type_id) REFERENCES extra_points_type(ext_type_id),
         ext_comments VARCHAR(200)
     );
-CREATE TABLE extra_points_type(
-    ext_type_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ext_type_name VARCHAR(100) NOT NULL,
-    ext_type_value INTEGER NOT NULL
-);
+
 
 /* ------------------------------------INSERT DATA-----------------------------------------------------------*/
 INSERT INTO gender(gen_name, gen_abreviation) VALUES
