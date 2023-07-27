@@ -109,7 +109,8 @@ CREATE TABLE
         FOREIGN KEY (ext_class_id) REFERENCES classes(class_id),
         ext_type_id INTEGER NOT NULL,
         FOREIGN KEY (ext_type_id) REFERENCES extra_points_type(ext_type_id),
-        ext_comments VARCHAR(200)
+        ext_comments VARCHAR(200),
+        ext_total INTEGER DEFAULT 0
     );
 
 
@@ -151,15 +152,26 @@ INSERT INTO speciality (sp_name) VALUES
 
 INSERT INTO users (user_name, user_gender, user_age, user_address, user_roll_id) VALUES
 ('John Doe', 1, 30, '123 Main St', 1),
+('Maria Lopez', 2, 26, '222 Pine Blvd', 1),
+('Lisa Wilson', 2, 31, '444 Oak St', 1),
+('Michael Johnson', 1, 34, '777 Birch Rd', 1),
+('James Anderson', 1, 33, '999 Elm Ave', 1),
+('Sophia Williams', 2, 29, '888 Oak St', 2),
 ('Jane Smith', 2, 28, '456 Oak Ave', 2),
 ('Alex Johnson', 1, 25, '789 Elm Rd', 2),
+('David Brown', 1, 32, '333 Birch Rd', 2),
+('Chris Lee', 1, 30, '666 Cedar Ln', 2),
+('Emma Martinez', 2, 25, '1011 Cedar Ln', 2),
+('Ryan Thompson', 1, 27, '1212 Pine Blvd', 2),
+('Olivia Davis', 2, 31, '1313 Maple Dr', 2),
+('Matthew Hernandez', 1, 26, '1414 Oak Ave', 2),
+('Daniel Miller', 1, 30, '1616 Elm Rd', 2),
 ('Emily White', 2, 27, '1010 Cedar Ln', 3),
 ('Eric Garcia', 1, 29, '111 Maple Dr', 3),
-('Maria Lopez', 2, 26, '222 Pine Blvd', 1),
-('David Brown', 1, 32, '333 Birch Rd', 2),
-('Lisa Wilson', 2, 31, '444 Oak St', 1),
 ('Sarah Taylor', 2, 28, '555 Elm Ave', 3),
-('Chris Lee', 1, 30, '666 Cedar Ln', 2);
+('Ava Wilson', 2, 28, '1515 Cedar Ln', 3),
+('Isabella Thompson', 2, 27, '1717 Birch Rd', 3);
+
 
 INSERT INTO phone_numbers (ph_num, ph_type, ph_user) VALUES
 ('+1 123-456-7890', 'Mobile', 1),
@@ -171,67 +183,88 @@ INSERT INTO phone_numbers (ph_num, ph_type, ph_user) VALUES
 ('+55 111-222-333', 'Mobile', 7),
 ('+1 666-777-8888', 'Work', 8),
 ('+61 444-555-666', 'Home', 9),
-('+49 444-555-666', 'Mobile', 10);
+('+49 444-555-666', 'Mobile', 10),
+('+44 987654321', 'Work', 11),
+('+61 333-444-555', 'Home', 12),
+('+1 555-555-5555', 'Mobile', 13),
+('+49 123-456-789', 'Work', 14),
+('+33 987654321', 'Home', 15),
+('+55 111-222-333', 'Mobile', 16),
+('+1 666-777-8888', 'Work', 17),
+('+61 444-555-666', 'Home', 18),
+('+49 444-555-666', 'Mobile', 19),
+('+4 444-556-756', 'Mobile', 20);
 
 INSERT INTO contact_email (em_address, em_type, em_user_id) VALUES
 ('john.doe@example.com', 'Personal', 1),
-('jane.smith@example.com', 'Work', 2),
-('alex.smith@example.com', 'Personal', 3),
-('emily.white@example.com', 'Work', 4),
-('eric.johnson@example.com', 'Personal', 5),
-('maria.garcia@example.com', 'Work', 6),
-('david.brown@example.com', 'Personal', 7),
-('lisa.wilson@example.com', 'Work', 8),
-('sarah.taylor@example.com', 'Personal', 9),
-('chris.lee@example.com', 'Work', 10);
+('maria.lopez@example.com', 'Work', 2),
+('lisa.wilson@example.com', 'Personal', 3),
+('michael.johnson@example.com', 'Work', 4),
+('james.anderson@example.com', 'Personal', 5),
+('sophia.williams@example.com', 'Work', 6),
+('jane.smith@example.com', 'Personal', 7),
+('alex.johnson@example.com', 'Work', 8),
+('david.brown@example.com', 'Personal', 9),
+('chris.lee@example.com', 'Work', 10),
+('emma.martinez@example.com', 'Personal', 11),
+('ryan.thompson@example.com', 'Work', 12),
+('olivia.davis@example.com', 'Personal', 13),
+('matthew.hernandez@example.com', 'Work', 14),
+('daniel.miller@example.com', 'Personal', 15),
+('emily.white@example.com', 'Personal', 16),
+('eric.garcia@example.com', 'Work', 17),
+('sarah.taylor@example.com', 'Personal', 18),
+('ava.wilson@example.com', 'Work', 19),
+('isabella.thompson@example.com', 'Personal', 20);
 
 INSERT INTO user_class (user_id, class_id) VALUES
 (1, 1),
 (2, 2),
-(3, 1),
-(4, 3),
-(1, 4),
-(2, 3),
-(3, 2),
+(3, 3),
 (4, 4),
-(1, 5),
-(2, 6);
+(5, 5),
+(6, 1),
+(7, 2),
+(8, 1),
+(9, 3),
+(10, 4),
+(11, 3),
+(12, 2),
+(13, 4),
+(14, 5),
+(15, 5);
 
 INSERT INTO user_speciality (user_id, sp_id) VALUES
 (1, 1),
 (2, 2),
 (3, 1),
 (4, 3),
-(1, 4),
-(2, 3),
-(3, 2),
-(4, 4),
-(1, 5),
-(2, 6);
+(5, 4),
+(15, 3),
+(16, 2),
+(17, 4),
+(18, 5),
+(19, 6),
+(20, 6);
 
 INSERT INTO teachers (teacher_user_id) VALUES
 (1),
-(6),
-(8),
-(10),
-(3),
-(7),
-(4),
-(9),
-(5),
-(2);
-
-INSERT INTO students (student_user_id) VALUES
 (2),
 (3),
 (4),
-(5),
+(5);
+
+INSERT INTO students (student_user_id) VALUES
+(6),
 (7),
 (8),
 (9),
 (10),
-(1),
-(6);
+(11),
+(12),
+(13),
+(14),
+(15);
 
 INSERT INTO extra_points_type (ext_type_name, ext_type_value) VALUES
 ('Llegada Temprana', 5),
@@ -245,17 +278,18 @@ INSERT INTO extra_points_type (ext_type_name, ext_type_value) VALUES
 ('Creatividad Destacada', 18),
 ('Esmero en Tareas', 10);
 
-INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type_id, ext_comments) VALUES
-(1, 2, 1, 1, 'Llegó temprano a clase.'),
-(2, 3, 2, 2, 'Participó activamente en la discusión.'),
-(3, 1, 1, 3, 'Entregó un proyecto adicional.'),
-(4, 4, 3, 4, 'Obtuvo calificaciones sobresalientes en los exámenes.'),
-(1, 5, 4, 5, 'Trabajó en equipo y colaboró con sus compañeros.'),
-(2, 6, 5, 6, 'Asistió a todas las clases del mes.'),
-(3, 7, 6, 7, 'Ha mostrado un progreso significativo en su rendimiento.'),
-(4, 8, 7, 8, 'Siempre se muestra dedicado y comprometido con su aprendizaje.'),
-(1, 9, 8, 9, 'Demostró creatividad en un proyecto de arte.'),
-(2, 10, 9, 10, 'Realizó sus tareas con esmero y dedicación.');
+INSERT INTO extra_points (ext_teacher_id, ext_student_id, ext_class_id, ext_type_id, ext_comments, ext_total) VALUES
+(1, 1, 1, 1, 'Llegó temprano a clase.', 5),
+(2, 2, 2, 2, 'Participó activamente en la discusión.', 10),
+(3, 4, 3, 3, 'Entregó un proyecto adicional.',20),
+(4, 5, 4, 4, 'Obtuvo calificaciones sobresalientes en los exámenes.', 15),
+(5, 9, 5, 5, 'Trabajó en equipo y colaboró con sus compañeros.', 8),
+(1, 3, 1, 6, 'Asistió a todas las clases del mes.', 10),
+(2, 7, 2, 7, 'Ha mostrado un progreso significativo en su rendimiento.', 12),
+(3, 6, 3, 8, 'Siempre se muestra dedicado y comprometido con su aprendizaje.', 15),
+(4, 8, 4, 9, 'Demostró creatividad en un proyecto de arte.', 18),
+(5, 10, 5, 10, 'Realizó sus tareas con esmero y dedicación.', 10);
+
 
 /* --------------------------------------------DATABASE QUERIES-------------------------------------------------- */
 
