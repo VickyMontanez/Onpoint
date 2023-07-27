@@ -84,7 +84,7 @@ usersHub.post("/", proxyUsers, (req, res) => {
                 console.error(err);
                 return res.status(500).send("¡ERROR! Error Inserting Data Into the DataBase");
               } else {
-                res.end("The Data Was Successfully Inserted Into The DataBase :) (teachers)");
+                res.end("The Data Was Successfully Inserted Into The DataBase :) (users)");
               }
             });
         });
@@ -126,7 +126,7 @@ usersHub.put("/:id", proxyUsers, (req, res) => {
                 return res.status(500).send("¡ERROR! Error Updating Data in the DataBase");
               }
 
-              res.send("User information updated successfully");
+              res.send("The data was successfully updated in the database :) (users)");
             }
           );
         }

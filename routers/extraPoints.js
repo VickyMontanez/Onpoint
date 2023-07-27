@@ -176,7 +176,7 @@ extrapointsHub.delete("/:ext_Id", (req, res) => {
         console.error(err);
         return res.status(500).send("¡ERROR! Error Fetching Data from the DataBase");
       } else {
-        res.json({ message: "Extra points deleted successfully :) (ExtraPoints)", total_extra_points: updatedTotalExtraPoints });
+        res.send("Extra points deleted successfully :) (ExtraPoints)" );
       }
     });
 });
